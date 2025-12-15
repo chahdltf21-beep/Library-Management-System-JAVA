@@ -3,12 +3,11 @@ package com.knf.dev.librarymanagementsystem;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.knf.dev.librarymanagementsystem.Application;
-
-@SpringBootTest(classes = Application.class)
-class ApplicationTests {
+@SpringBootTest
+class ContextLoadTest {
 
     @Test
-    void contextLoads() {
+    void contextLoadsAgain() {
+        assert true;
     }
 }

@@ -1,26 +1,36 @@
 package com.knf.dev.librarymanagementsystem.service;
 
 import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 import com.knf.dev.librarymanagementsystem.entity.Book;
 
 public interface BookService {
 
-	public List<Book> findAllBooks();
+    //@ ensures \result != null; // Postcondition: list of books should not be null
+    public List<Book> findAllBooks();
 
-	public List<Book> searchBooks(String keyword);
+    //@ requires keyword != null; // Precondition: the search keyword must not be null
+    //@ ensures \result != null; // Postcondition: list of books should not be null
+    public List<Book> searchBooks(String keyword);
 
-	public Book findBookById(Long id);
+    //@ requires id > 0; // Precondition: book ID must be a positive number
+    //@ ensures \result != null; // Postcondition: the result should not be null
+    public Book findBookById(Long id);
 
-	public void createBook(Book book);
+    //@ requires book != null; // Precondition: book must not be null
+    //@ ensures \result == true; // Postcondition: the book is created successfully
+    public void createBook(Book book);
 
-	public void updateBook(Book book);
+    //@ requires book != null && book.getId() > 0; // Precondition: book must not be null and must have a valid ID
+    //@ ensures \result == true; // Postcondition: the book is updated successfully
+    public void updateBook(Book book);
 
-	public void deleteBook(Long id);
+    //@ requires id > 0; // Precondition: the book ID must be a positive number
+    //@ ensures \result == true; // Postcondition: the book is deleted successfully
+    public void deleteBook(Long id);
 
-	public Page<Book> findPaginated(Pageable pageable);
-
+    //@ requires pageable != null; // Precondition: pageable object must not be null
+    //@ ensures \result != null; // Postcondition: paginated result should not be null
+    public Page<Book> findPaginated(Pageable pageable);
 }

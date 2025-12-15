@@ -2,16 +2,14 @@ name: Java CI
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -20,11 +18,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build, Test and Generate JaCoCo Report
+      - name: Build & run tests
         run: mvn clean test
 
-      - name: Upload JaCoCo Coverage Report
+      - name: Run mutation testing with PiTest
+        run: mvn org.pitest:pitest-maven:mutationCoverage
+
+      - name: Upload PiTest report
         uses: actions/upload-artifact@v4
         with:
-          name: jacoco-report
-          path: target/site/jacoco
+          name: pitest-report
+          path: target/pit-reports

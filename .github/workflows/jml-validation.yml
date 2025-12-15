@@ -25,3 +25,7 @@ jobs:
         run: |
           chmod +x ./run_openjml.sh
           ./run_openjml.sh
+<<<<<<< HEAD
+=======
+
+>>>>>>> 452610b (Add JML verification with OpenJML in GitHub Actions)
